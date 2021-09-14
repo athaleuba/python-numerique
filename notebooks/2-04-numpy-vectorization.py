@@ -11,7 +11,7 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3 (ipykernel)
+#     display_name: Python 3
 #     language: python
 #     name: python3
 #   language_info:
@@ -64,7 +64,7 @@ from matplotlib import pyplot as plt
 # (`numpy` utilise alors un **décalage** pour passer d'un élément du tableau à un autre)
 # <br>
 #
-# * c'est plus concis, vos codes sont plus rapide et plus lisible !
+# * c'est plus concis, vos codes sont plus rapides et plus lisibles !
 #    
 # <br>
 #     
@@ -172,8 +172,8 @@ def scalar_function(x):
 # %% [markdown]
 # ## les `ufunc`
 
-# %% [markdown]
-# ## les `ufunc`
+# %% [markdown] tags=["framed_cell"]
+# ## qu'est-ce qu'une `ufunc`
 #
 # <br>
 #
@@ -207,9 +207,7 @@ def scalar_function(x):
 # <br>
 #     
 # **les opérateurs arithmétiques classiques**  
-# et leurs 
-#
-# -partie `numpy` (*Ufuncs*)
+# et leur contre-partie `numpy` (*Ufuncs*)
 #
 #
 # | opérateur | `numpy` fonction    |
@@ -315,7 +313,7 @@ np.power
 #     
 # <br>
 #     
-# l'expression `x >= 0` appliquée à `tab` rend ler tableau `array([False, True, False])`
+# l'expression `x >= 0` appliquée à `tab` rend le tableau `array([False, True, False])`
 #
 # <br>
 #
@@ -347,12 +345,11 @@ np.power
 # </div>
 
 # %%
-# votre code
-
-# %%
+# le code
 absolute_vect = np.vectorize(absolute)
 
 # %%
+# le code
 absolute_vect(tab)
 
 # %% [markdown]

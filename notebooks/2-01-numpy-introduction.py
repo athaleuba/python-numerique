@@ -11,7 +11,7 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3 (ipykernel)
+#     display_name: Python 3
 #     language: python
 #     name: python3
 #   language_info:
@@ -391,10 +391,10 @@ print(f'matplotlib version {mpl.__version__}')
 #     
 # <br>
 #     
-# comme un `max`
-# * le passager le plus agé du titanic
-# * les pixels les plus foncés
-# * les maxima des lignes de la matrice
+# comme un `max` ou un `min`
+# * le passager le plus agé ou le plus jeune du titanic
+# * les pixels les plus clairs ou les plus foncés
+# * les minims ou maxima des lignes de la matrice
 #   
 #   
 # <br>

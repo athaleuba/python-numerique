@@ -11,7 +11,7 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3 (ipykernel)
+#     display_name: Python 3
 #     language: python
 #     name: python3
 #   language_info:
@@ -55,7 +55,7 @@ HTML('<link rel="stylesheet" href="slides-notebook.css" />')
 # %% [markdown] tags=["framed_cell"]
 # ## organisation de la mémoire
 #
-# ### pourquoi comprendre comment <code>numpy</code> travaille en mémoire ?|
+# ### pourquoi comprendre comment <code>numpy</code> travaille en mémoire ?
 #
 # <br>
 #     
@@ -289,12 +289,6 @@ mat.nbytes
 
 # %%
 # votre code ici
-l = ['un', 'deux', 'trois', 'cinq']
-tab = np.array(l)
-print(    tab    )
-tab[0] = 'quatre'
-print(    tab    )
-tab.dtype
 
 # %% [markdown]
 # `numpy` cherche le plus petit type pour stocker les chaînes de caractères initiales
@@ -436,8 +430,8 @@ tab.dtype
 #
 # </div>    
 #
-# ${0 \leq i < 4}$  
-# ${0 \leq j < 5}$
+# ${0 \leq i \leq 4}$  
+# ${0 \leq j \leq 5}$
 
 # %% [markdown]
 # ***

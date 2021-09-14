@@ -11,7 +11,7 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3 (ipykernel)
+#     display_name: Python 3
 #     language: python
 #     name: python3
 #   language_info:
@@ -298,7 +298,7 @@ print(mat.size, mat.shape[0] * mat.shape[1])
 print(mat.ndim, len(mat.shape))
 
 # %% [markdown] tags=["framed_cell"]
-# ### création tableau avec type des éléments    
+# ### création d'un tableau avec le type des éléments    
 # <br>
 # <br>
 #     
@@ -345,7 +345,7 @@ print(mat.ndim, len(mat.shape))
 # on peut donc utiliser le type  
 # * `numpy.int8` pour le type des entiers signés sur 8 bits  
 #   $256$ valeurs de $-128$ à $127$
-# * le type correspondant sere `numpy.int8` (entier signé sur 8 bits)
+# * le type correspondant sera `numpy.int8` (entier signé sur 8 bits)
 #     
 # <br>
 #     
@@ -371,7 +371,8 @@ print(mat.ndim, len(mat.shape))
 # ```python
 # mat = np.array(matrice, dtype=np.uint8) 
 # mat
-# -> [[128, 178, 224], # ouh là là !
+# -> [[128, 178, 224], # ouh là là ! 128 = 256 - 128
+#                      # (complément à 2)
 #     [ 17,   5, 127]], dtype=uint8
 # ```
 
@@ -407,7 +408,7 @@ mat
 # %% [markdown]
 # **exercice**
 #
-# 1. créez un tableau pour stocker la matrice ci-dessous avec le plus petit type entier 
+# 1. créez un tableau pour stocker la matrice ci-dessous avec le plus petit type entier non signé
 #
 # ```python
 # l = [[  0,   8,  34,   8],
@@ -458,11 +459,11 @@ print(    mat     )
 # <br>
 # <br>
 #
-# créons un tableau avec des éléments de type entier signé sur 8 bits (1 octet)
+# créons un tableau avec des éléments de type entier (type par défaut)
 #     
 # ```python
 # l = [-1, 2, 3]
-# mat = np.array(l, np.int32)
+# mat = np.array(l)
 # mat
 #     -> [-1, 2, 3]
 # ```
@@ -656,7 +657,7 @@ zorro1
 #     
 #     
 # `numpy.linspace(from-included, to-included, n)`
-# * `n` réels régulièrement espacées dans un intervalle
+# * `n` réels régulièrement espacés dans un intervalle
 # * la valeur supérieure de l'intervalle **est** incluse
 
 # %% [markdown]
