@@ -18,7 +18,7 @@ On installera Julyter directement avec l'outil `conda` accessible depuis le term
 
 ```bash
 # Pour installer jupyter et jupytext
-$ conda install jupyter juoytext
+$ conda install jupyter jupytext
 ```
 
 # Environnements virtuels
