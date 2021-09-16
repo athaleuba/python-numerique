@@ -30,6 +30,10 @@
 # %% [markdown]
 # # TP - un peu de musique
 
+# %%
+from IPython.display import HTML
+HTML('<link rel="stylesheet" href="slides-notebook.css" />')
+
 # %% [markdown]
 # ## avertissement
 
@@ -48,9 +52,6 @@ import matplotlib.pyplot as plt
 # %%
 # pour jouer le son qu'on va produire
 from IPython.display import Audio
-
-# %%
-# from scipy.io import wavfile
 
 # %% [markdown]
 # ## nature du son
@@ -81,13 +82,14 @@ LA = 440
 # ## synthétiseur - fréquence
 
 # %% [markdown]
-# reste à déterminer la bonne fréquence - et accessoirement l'amplitude, mais pour l'instant on prend une amplitude de 1
+# reste à déterminer l'amplitude, pour l'instant on prend une amplitude de 1
 
 # %% [markdown]
-# imaginons que nous voulions produire un son correspondant à un LA à 440 Hz, sur une seconde
-#
-# 1. nous devons donc calculer un tableau qui fait combien d'entrées ?
-# 2. et comment on peut s'y prendre pour calculer ce tableau ?
+# imaginons que nous voulions produire un son correspondant à un LA à 440 Hz, sur une seconde:
+#   1. nous devons donc calculer un tableau qui fait combien d'entrées ?
+#   1. quelle est en fonction du temps, et donc sur l'intervalle $[0, 1]$,  
+#      l'équation de la fonction qui nous intéresse ?
+#   1. comment on peut s'y prendre pour calculer ce tableau ?
 
 # %%
 # votre code
@@ -96,23 +98,6 @@ la_1seconde = ...
 # %% [markdown]
 # ***
 # ***
-
-# %% [markdown]
-# **correction**
-#
-#
-# 1. N = 44_100
-#
-# 2. on prend t variant de 0 à 1 et on applique tout simplement
-#
-#    $f(t) = sin(2\pi t * 440)$
-#
-# il reste juste à 
-#
-# * créer en entrée un tableau qui représente le temps en secondes  
-#   avec `np.linspace()` pour modéliser l'intervalle de temps de 0 à 1s  
-#   et en lui demandant de créer 44_100 points dans cet intervalle
-# * de lui appliquer la formule ci-dessus
 
 # %%
 # pour écouter le résultat
@@ -163,6 +148,22 @@ MyAudio(sine(LA, .5), autoplay=True)
 # pour écouter: plus long
 
 MyAudio(sine(LA, 1.5), autoplay=True)
+
+# %% [markdown] tags=["level_intermediate"]
+# ### pour les rapides
+#
+# on veut obtenir un effet de 'note qui monte'
+#
+# améliorer un peu pour générer une courbe avec un fréquence qui croit (ou décroit) linéairement avec le temps
+#
+# écrire une fonction `sine_linear(freq1, freq2, duration)`
+
+# %% tags=["level_intermediate"]
+# votre code
+
+# %% tags=["level_intermediate"]
+# pour écouter
+MyAudio(sine_linear(440, 660, 3))
 
 # %% [markdown]
 # ## réglage du volume
@@ -236,12 +237,12 @@ DO = 523.25
 
 # %%
 # votre code
-do_la = ...
+la_do = ...
 
 # %%
 # pour écouter
 
-MyAudio(do_la, autoplay=True)
+MyAudio(la_do, autoplay=True)
 
 # %% [markdown]
 # ## amplitude et types
@@ -315,6 +316,8 @@ trash[32_764: 32_772]
 # ### mise à l'échelle
 
 # %% [markdown]
+# **exercice**
+#
 # en vous souvenant qu'on a à notre disposition la méthode `array.astype()`  
 # pour fabriquer une copie d'un tableau numpy convertie dans un autre type,
 #
@@ -326,7 +329,7 @@ trash[32_764: 32_772]
 # i.e. 1 ou -1 dans le 1er format  
 # correspondent au maximum codable dans le second format
 #
-# remarquez que le son produit est totalement identique
+# le son produit doit être totalement identique - le volume notamment
 
 # %%
 # votre code
@@ -336,11 +339,11 @@ def float_to_int16(as_float):
 
 # %% cell_style="split"
 # pour écouter 
-MyAudio(float_to_int16(do_la), autoplay=True)
+MyAudio(float_to_int16(la_do), autoplay=True)
 
 # %% cell_style="split"
 # sans conversion 
-MyAudio(do_la, autoplay=True)
+MyAudio(la_do, autoplay=True)
 
 # %% [markdown]
 # ## fréquences des notes de la gamme
@@ -450,12 +453,12 @@ MyAudio(
 # %% [markdown] cell_style="split"
 # $
 # \begin{array}
-# 00 & 1 & 2^0\\
-# 1 & \sqrt[^{12}]{2} & 2^{1/12}\\
-# 2 & (\sqrt[^{12}]{2})^2 & 2^{2/12}\\
+# 00 & 1 & 2^0 & do\\
+# 1 & \sqrt[^{12}]{2} & 2^{1/12} & do\sharp\\
+# 2 & (\sqrt[^{12}]{2})^2 & 2^{2/12} & ré\\
 # ...\\
-# 11 & (\sqrt[^{12}]{2})^{11} & 2^{11/12}\\
-# 12 & 2 & 2^{12/12}\\
+# 11 & (\sqrt[^{12}]{2})^{11} & 2^{11/12} & la\sharp\\
+# 12 & 2 & 2^{12/12} & do'\\
 # \end{array}
 # $
 
@@ -511,6 +514,8 @@ ratios[7]
 # (uniquement des exemples d'utilisation de matplotlib)
 
 # %% cell_style="center"
+# %matplotlib inline
+
 plt.figure(figsize=(2, 6))
 
 # on veut afficher 12 points de coordonnées
@@ -564,7 +569,7 @@ for special in specials:
 # ## superposer deux sons
 
 # %% [markdown]
-# comment faire pour jouer deux sons en même temps ?
+# comment faire pour jouer plusieurs sons en même temps ?
 
 # %%
 do = sine(freq_from_name('do'), 2)
@@ -596,13 +601,13 @@ from scipy.io import wavfile
 # **exercice**
 #
 # 1. chercher dans la documentation comment sauver un son dans un fichier `.wav`
-# 1. sauver un de vos morceaux (par exemple `do_la`)
+# 1. sauver un de vos morceaux (par exemple `la_do`)
 # 1. relisez-le
 # 1. assurez-vous que le résultat est conforme au morceau de départ
 
 # %% tags=["raises-exception"]
 # votre code
-original = do_la # par exemple
+original = la_do # par exemple
 #
 # sauver le son 'before' dans un fichier 'sample.wav'
 # 

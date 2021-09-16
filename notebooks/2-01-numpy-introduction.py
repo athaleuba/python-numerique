@@ -11,7 +11,7 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 #   language_info:
@@ -34,7 +34,10 @@ HTML('<link rel="stylesheet" href="slides-notebook.css" />')
 
 # %% [markdown] tags=["framed_cell"]
 # **Note**: cette cellule doit s'afficher entourée d'un cadre  
-# si ce n'est pas le cas et pour un rendu optimal, installez la librairie `nb-courselevels` (avec `pip install nb-courselevels`)
+# si ce n'est pas le cas et pour un rendu optimal, installez la librairie `nb-courselevels`  
+# ```bash
+# pip install nb-courselevels
+# ```
 
 # %% [markdown]
 # # python-numérique - introduction
