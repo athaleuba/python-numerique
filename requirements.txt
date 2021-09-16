@@ -8,6 +8,7 @@ pillow
 jupyter
 jupytext
 ipywidgets
+jupyter-contrib-nbextensions
 
 ipythontutor
 nbautoeval

@@ -14,11 +14,22 @@ Afin de simplifier l'installation avec pip, un fichier `requirements.txt` est fo
 
 ## Avec `conda` 
 
-On installera Julyter directement avec l'outil `conda` accessible depuis le terminal:
+On installera Jupyter directement avec l'outil `conda` accessible depuis le terminal:
 
 ```bash
 # Pour installer jupyter et jupytext
 $ conda install jupyter jupytext
+```
+
+## Épilogue
+
+Dans les deux cas, pour activer l'extension `toc2` (qui permet
+d'afficher la table des matières, et met les numéros de sections),
+faites enfin
+
+```bash
+# pour les numéros de section
+$ jupyter nbextension enable toc2/main
 ```
 
 # Environnements virtuels
