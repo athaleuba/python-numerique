@@ -10,6 +10,8 @@ tracks:
         notebooks: [ "notebooks/3-[0-9]*.py"]
       - name: matplotlib
         notebooks: [ "notebooks/4-[0-9]*.py"]
+      - name: cheatsheets
+        notebooks: [ "cheatsheets/cheatsheets.md" ]
 
 builds:
   - id: handouts
