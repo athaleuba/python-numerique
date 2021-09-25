@@ -12,7 +12,7 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3 (ipykernel)
+#     display_name: Python 3
 #     language: python
 #     name: python3
 #   language_info:
@@ -53,7 +53,7 @@ from matplotlib import pyplot as plt
 # * `reshape()`, tests, masques booléens, *ufunc*, agrégation, opérations linéaires sur les `numpy.ndarray`
 # * les autres notions utilisées sont rappelées (très succinctement)
 #
-# pour les lecture, écriture, affichage d'images
+# pour la lecture, l'écriture et l'affichage d'images
 # * utilisez `plt.imread`, `plt.imshow`
 # * utilisez `plt.show()` entre deux `plt.imshow()` dans la même cellule
 #
@@ -64,12 +64,12 @@ from matplotlib import pyplot as plt
 # par exemple `matplotlib.pyplot.imsave` ne vous permet pas de donner la qualité de la compression  
 # alors que la fonction `save` de `PIL` le permet
 # * vous êtes libres d'utiliser une autre librairie comme `opencv`  
-#   si vous la connaissez assez pour vous débrouiller, les images ne sont qu'un prétexte
+#   si vous la connaissez assez pour vous débrouiller (et l'installer), les images ne sont qu'un prétexte
 #
 # **n'oubliez pas d'utiliser le help en cas de problème.**
 
 # %% [markdown]
-# ## lecture des codes RGB de couleurs d'un fichier
+# ## Lecture des codes RGB de couleurs d'un fichier
 
 # %% [markdown]
 # 1. Le fichier `rgb-codes.txt` contient une table de couleurs:
@@ -103,7 +103,7 @@ from matplotlib import pyplot as plt
 # <br>
 #
 # 1. Appliquez la fonction à toutes les couleurs du fichier  
-# et sauver ce patchwork dans le fichier 'patchwork.jpg' avec `plt.imsave`
+# et sauver ce patchwork dans le fichier `patchwork.jpg` avec `plt.imsave`
 # <br>
 #
 # 1. Relisez et Affichez votre fichier  
@@ -113,7 +113,7 @@ from matplotlib import pyplot as plt
 # votre code
 
 # %% [markdown]
-# ## somme des valeurs RGB d'une image
+# ## Somme des valeurs RGB d'une image
 
 # %% [markdown]
 # 0. Lisez l'image `les-mines.jpg`
@@ -150,16 +150,19 @@ from matplotlib import pyplot as plt
 # %% [markdown]
 # Pour passer en sépia les valeurs R, G et B d'un pixel (dont encodées sur un entier non-signé 8 bits)  
 #
-# 1. convertir ces valeurs par cette transformation  
+# 1. on convertit ces valeurs par cette transformation  
 # $x_R = 0.393\, R + 0.769\, G + 0.189\, B$  
 # $x_G = 0.349\, R + 0.686\, G + 0.168\, B$  
 # $x_B = 0.272\, R + 0.534\, G + 0.131\, B$  
 # avec des $x_R$, $x_G$ et $x_B$ de type flottants  
-# 1. convertir les valeurs $x_R$, $x_G$ et $x_B$ en `int`  
+# 1. on convertit les valeurs $x_R$, $x_G$ et $x_B$ en `int`  
 # pas `uint8` pour ne pas avoir d'overflow (genre de 256 devenant 0)  
-# 1. puis seuiller les valeurs qui sont plus grandes que `255` à `255` 
+# 1. puis on seuille les valeurs qui sont plus grandes que `255` à `255` 
+
+# %% [markdown]
+# **Exercice**
 #
-# **Exercice** en utilisant la fonction `numpy.dot` et autres fonctions `numpy` de base sans aucune boucle  `for`
+# En utilisant la fonction `numpy.dot` et autres fonctions `numpy` de base sans aucune boucle  `for`
 # 1. Faites une fonction qui prend en argument une image RGB et rend une image RGB sépia  
 # (vous pouvez généralisez votre fonction à toute transformation linéaire de RGB)  
 # 1. Passez votre patchwork de couleurs en sépia  
@@ -172,17 +175,17 @@ from matplotlib import pyplot as plt
 # votre code
 
 # %% [markdown]
-# ## exemple de qualité de compression
+# ## Exemple de qualité de compression
 
 # %% [markdown]
-# 1. importez la librairie `Image`de `PIL` (pillow) 
+# 1. Importez la librairie `Image`de `PIL` (pillow) 
 # (vous devez peut être installer PIL (pillow) dans votre environnement)
 #
-# 2. lisez le fichier 'les-mines.jpg' avec `Image.open` et avec `plt.imread`  
+# 2. Lisez le fichier 'les-mines.jpg' avec `Image.open` et avec `plt.imread`  
 #
-# 3. vérifier que les valeurs contenues dans deux objets sont proches
+# 3. Vérifiez que les valeurs contenues dans les deux objets sont proches
 #
-# 4. sauver (toujours avec de nouveaux noms de fichiers)  
+# 4. Sauvez (toujours avec de nouveaux noms de fichiers)  
 # l'image lue par `imread` avec `plt.imsave` et celle lue par `Image.open` avec `save`  
 # (`save` s'applique à l'objet créé par `Image.open`)
 #

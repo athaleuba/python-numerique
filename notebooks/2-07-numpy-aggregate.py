@@ -2,7 +2,7 @@
 # ---
 # jupyter:
 #   jupytext:
-#     cell_metadata_filter: all,-hidden,-heading_collapsed,-run_control,-trusted
+#     cell_metadata_filter: all,-hidden,-heading_collapsed,-run_control
 #     cell_metadata_json: true
 #     notebook_metadata_filter: all, -jupytext.text_representation.jupytext_version,
 #       -jupytext.text_representation.format_version, -language_info.version, -language_info.codemirror_mode.version,
@@ -12,7 +12,7 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3 (ipykernel)
+#     display_name: Python 3
 #     language: python
 #     name: python3
 #   language_info:
@@ -62,10 +62,10 @@ import numpy as np
 # <br>
 #     
 # les fonctions d'agrégation vont permettre de combiner les valeurs d'un même tableau  
-# et retournent des sous-tableaux
+# et de retourner des sous-tableaux
 # * somme des lignes
 # * max d'une matrice
-# *...
+# * ...
 #     
 # <br>
 #     
@@ -193,11 +193,9 @@ type(np.min(vec))
 # * si le résultat est la longueur du tableau... ils sont tous vrais
 # * si le résultat est 0... ils sont tous faux
 #     
-# (le faire en exercice)
-#     
 # <br>
 #     
-# version `numpy` avec les fonction `np.all` et `np.any`  
+# **version `numpy`** avec les fonction `np.all` et `np.any`  
 # soit fonction globale soit méthode de `numpy.ndarray`
 #
 # <br>
@@ -230,6 +228,23 @@ print(np.all(tab), np.any(tab))
 print(tab.all(), tab.any())
 print(tab.sum() == len(tab), tab.sum() != 0)
 print(np.all(np.random.randint(1, 2, size=(10), dtype=np.bool))) # tous des 1
+
+
+# %% [markdown]
+# **exercice : programmer la version "pédestre"**
+#
+# 1. créez une fonction manuelle (sans utiliser `np.all`  et `np.any`) qui prend un tableau numpy de booléens en paramètre et détermine si tous les éléments du tableau sont vrais.
+# <br>
+#
+# 2. créez une fonction manuelle (sans utiliser `np.all`  et `np.any`) qui prend un tableau numpy de booléens en paramètre et détermine si tous les éléments du tableau sont faux.
+
+# %% {"trusted": true}
+# votre code
+def fake_all(tab):
+    pass
+def fake_none(tab):
+    pass
+
 
 # %% [markdown]
 # ## agrégation en dimension > 1
@@ -339,7 +354,6 @@ tab = np.arange(120).reshape(2, 3, 4, 5)
 
 # %%
 tab.sum(axis=0)
-
 # %% [markdown] {"tags": ["framed_cell"]}
 # ### min et max globaux en dimension 4
 #
@@ -383,12 +397,8 @@ print(    tab.argmax()    )
 
 print(    np.unravel_index(tab.argmax(), tab.shape)    )
 
-
 # %% {"tags": ["level_advanced"]}
 # votre code ici
-def unravel_index(argmax, shape):
-    pass
-
 
 # %%
 unravel_index(104, (2, 3, 4, 5))

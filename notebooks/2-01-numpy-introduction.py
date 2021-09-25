@@ -397,7 +397,7 @@ print(f'matplotlib version {mpl.__version__}')
 # comme un `max` ou un `min`
 # * le passager le plus agé ou le plus jeune du titanic
 # * les pixels les plus clairs ou les plus foncés
-# * les minims ou maxima des lignes de la matrice
+# * les minima ou maxima des lignes de la matrice
 #   
 #   
 # <br>

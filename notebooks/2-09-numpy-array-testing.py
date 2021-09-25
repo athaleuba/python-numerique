@@ -12,7 +12,7 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3 (ipykernel)
+#     display_name: Python 3
 #     language: python
 #     name: python3
 #   language_info:
@@ -74,7 +74,7 @@ import numpy as np
 #
 # <br>
 #     
-# génèrons aléatoirement un tableau d'entiers  
+# générons aléatoirement un tableau d'entiers  
 # (ici entre $0$ et $9$)
 #    
 # ```python
@@ -119,9 +119,9 @@ import numpy as np
 # le code
 tab = np.random.randint(10, size=(2, 3))
 print(tab)
-print(tab %2 == 0)
-print(np.equal(tab%2, 0))
-res = tab %2 == 0
+print(tab % 2 == 0)
+print(np.equal(tab % 2, 0))
+res = tab % 2 == 0
 print(res.shape)
 
 # %% [markdown] {"tags": ["framed_cell"]}
@@ -249,13 +249,6 @@ np.count_nonzero(tab%2==0, axis=0)
 #     
 # <br>
 #     
-# le résultat du filtre est un tableau `numpy.ndarray` uni-dimensionnel  
-# **c'est un tableau *original*  pas une vue**
-#
-# <br>
-#
-# -------------------------
-#     
 # générons un `numpy.ndarray` de forme `(2, 3, 4)` d'entiers entre -10 et 10
 #
 # ```python
@@ -273,35 +266,21 @@ np.count_nonzero(tab%2==0, axis=0)
 # ```python
 # tab[np.greater(tab, 0)]
 # ``` 
+#    
+# <br>
+#
+# on peut modifier tous les éléments filtrés d'un seul coup  
+# lors de l'application du filtre
+#
+# ```python
+# tab[tab > 0] = 0
+# tab # n'a plus que des éléments négatifs ou nuls
+# ```
 #
 # <br>
-#     
-#     
-# * le filtre est un tableau `numpy.ndarray`
-#     
-# ```python
-# type(tab[np.greater(tab, 0)])
-# -> numpy.ndarray
-# ```
-#     
-# <br>
-#     
-#     
-# * c'est un tableau original i.e. sans `base`
-#     
-# ```python
-# tab = np.random.randint(-10, 10, size=(2, 3, 4))
-# tab.base                     # None
-# tab[np.greater(tab, 0)].base # None
-# tab[tab > 0].base            # None
-# ``` 
-#     
-# <br>
-#     
-# pour accéder dans le tableau d'origine  
-# aux éléments sélectionnés par le filtre  
-# il faudra construire leurs indices dans le tableau original  
-# (on y reviendra)
+#
+# on peut aussi construire les indices des éléments sélectionnés  
+# pour les repérer dans le tableau original
 
 # %% {"scrolled": true}
 # le code
@@ -311,10 +290,8 @@ print(tab[tab > 0])
 
 # %%
 # le code
-tab = np.random.randint(-10, 10, size=(2, 3, 4))
-print(tab.base)
-print(tab[np.greater(tab, 0)].base)
-print(tab[tab > 0].base)
+tab [tab > 0] = 0
+tab
 
 # %% [markdown] {"tags": ["framed_cell"]}
 # ## composition des conditions
@@ -322,7 +299,7 @@ print(tab[tab > 0].base)
 # <br>
 #     
 # 4 règles
-# * vous ne pouvez **pas** utiliser les opérateurs logiques `Python` `and` `or` `not`  
+# * vous ne pouvez **pas** utiliser les opérateurs logiques `Python` `and`, `or`, `not`  
 #   (ils ne sont **pas** vectorisés)
 # * vous devez utiliser les opérateurs logiques *bit-à-bit* `&` `|`  `~`
 # * ou leur équivalent en fonction `numpy`  
@@ -391,10 +368,10 @@ try:
 except Exception as exc:
     print("OOPS - ne marche pas avec numpy\n", exc)
 
-# %% [markdown]
+# %% [markdown] {"tags": ["level_intermediate"]}
 # ## modifier les éléments dans tableau d'origine
 
-# %% [markdown] {"tags": ["framed_cell"]}
+# %% [markdown] {"tags": ["framed_cell", "level_intermediate"]}
 # ### repérer les éléments par leurs indices
 #
 # <br>
@@ -413,23 +390,24 @@ except Exception as exc:
 # ```    
 # <br>
 #     
-# pour modifier, les éléments sélectionner, dans le tableau d'origine  
-# il faut les repérer par leur indices dans le tableau d'origine
+# pour modifier les éléments sélectionnés dans le tableau d'origine  
+# 1. on le fait au moment de leur sélection (déjà vu)
+# 1. on repère les éléments par leur indice dans le tableau d'origine
 #
 # <br>
 #     
 # pour calculer ces indices, deux fonctions:
 # * la fonction `numpy.nonzero`
-# * la fonction `numpy.argwhere`
+# * la fonction `numpy.argwhere` (avancé)
 
-# %%
+# %% {"tags": ["level_intermediate"]}
 # le code
 tab = np.array([[1, 2, 3], [4, 5, 6]])
 res = tab[~(tab%2==0)]
 res[0] = 1000
 print(tab)
 
-# %% [markdown] {"tags": ["framed_cell"]}
+# %% [markdown] {"tags": ["framed_cell", "level_intermediate"]}
 # ### la fonction `numpy.nonzero`
 #
 # <br>
@@ -484,13 +462,13 @@ print(tab)
 #     [   4, 1000,    6]]
 # ```
 
-# %%
+# %% {"tags": ["level_intermediate"]}
 tab = np.array([[1, 2, 3], [4, 5, 6]])
-np.nonzero(~(tab%2==0))
-print(tab[0, 0], tab[0, 2], tab[1, 1])
-print(tab[np.nonzero(~(tab%2==0))])
+print("non zero", np.nonzero(~(tab%2==0)))
+print("elements", tab[0, 0], tab[0, 2], tab[1, 1])
+print("filter", tab[np.nonzero(~(tab%2==0))])
 tab[np.nonzero(~(tab%2==0))] = 0
-tab
+print("edited tab", tab)
 
 # %% [markdown] {"tags": ["framed_cell", "level_intermediate"]}
 # ###  la fonction `numpy.argwhere`
@@ -547,7 +525,7 @@ tab
 # -> array([1, 3, 5])
 # ```
 
-# %%
+# %% {"tags": ["level_intermediate"]}
 # le code
 tab = np.array([[1, 2, 3], [4, 5, 6]])
 cond = ~(tab%2==0)
@@ -580,7 +558,7 @@ tab[tuple(np.argwhere(cond).T)]
 #         [ 8,  0, 10,  0]])
 # ```
 
-# %%
+# %% {"tags": ["level_advanced"]}
 # le code
 tab = np.arange(12).reshape(3, 4)
 np.putmask(tab, tab%2==1, 0)

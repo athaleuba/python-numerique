@@ -12,7 +12,7 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3 (ipykernel)
+#     display_name: Python 3
 #     language: python
 #     name: python3
 #   language_info:
@@ -123,7 +123,7 @@ import numpy as np
 #     
 # <br>
 #
-# mais attention: ne fonctionne pas du tout pareil sur les listes `Python`
+# mais attention : ne **fonctionne pas** du tout pareil sur les **listes `Python`**
 #     
 # ```python
 # [1, 2, 3, 4, 5, 6] + [10, 20 ] # + est append
@@ -143,7 +143,7 @@ tab+[1]
 print([1, 2, 3, 4, 5, 6] + [10, 20])
 
 # %% [markdown]
-# ## broadcasting: comment ça marche ?
+# ## broadcasting : comment ça marche ?
 
 # %% [markdown] {"tags": ["framed_cell"]}
 # ### le broadcasting, c'est quoi ?
@@ -153,7 +153,7 @@ print([1, 2, 3, 4, 5, 6] + [10, 20])
 #     
 # <br>
 #     
-# le *plus petit tableau*, quand c'est possible, est considéré comme *élargi* à la taille du plus grand  
+# le *plus petit tableau*, **quand c'est possible**, est considéré comme *élargi* à la taille du plus grand  
 # afin qu'ils aient des formes compatibles
 #     
 # <br>
@@ -255,6 +255,7 @@ mat + 1
 # **oui aussi**
 # ```python
 # mat + np.arange(10, 60, 10)
+# # ou
 # mat + np.arange(10, 60, 10).reshape(1, 5)
 # ```
 #
@@ -317,11 +318,16 @@ mat + np.arange(10, 60, 10).reshape(1, 5)
 #
 # <br>
 #     
-# de même pour les groupes de groupes de groupes de ... de matrices
+# de même pour les groupes de groupes de groupes de ... de matrices, etc.
 
 # %%
 # le code
 mat = np.arange(30).reshape(2, 3, 5)
+print(mat)
+mat + [1000, 2000, 3000, 4000, 5000]   
+
+# %%
+mat = np.arange(400).reshape(2, 4, 2, 5, 5)
 print(mat)
 mat + [1000, 2000, 3000, 4000, 5000]   
 
@@ -395,13 +401,6 @@ mat+col
 #     
 # il faut faire attention à la forme de la colonne `(n, 1)`
 
-# %%
-# le code
-line = np.arange(5)
-print(line)
-col = np.arange(10, 31, 10).reshape((3, 1))
-line + col
-
 # %% [markdown] {"tags": ["level_intermediate", "framed_cell"]}
 # ## règles de broadcasting - avancés
 #
@@ -431,9 +430,14 @@ line + col
 # -> ValueError: operands could not be broadcast together with shapes (2,3) (2,4)
 # ```
 
-# %% {"cell_style": "center", "hide_input": false, "tags": ["raises-exception", "level_intermediate"]}
-# le code
+# %%
+# le code d'un exemple
+m1 = np.arange(27).reshape(3, 3, 3)
+m2 = np.arange(9).reshape(3, 3)
+print("m1", m1, "\nm2", m2, "\nprod", m1 * m2)
 
+# %% {"cell_style": "center", "hide_input": false, "tags": ["raises-exception", "level_intermediate"]}
+# le code du contre-exemple
 m1 = np.arange(6).reshape(2, 3)
 m2 = np.arange(8).reshape(2, 4)
 try:
@@ -476,7 +480,7 @@ except ValueError as e:
 #     
 #   $\begin{pmatrix} a_{11} & a_{12} & a_{13} \\ a_{21} & a_{22} & a_{23} \\  \end{pmatrix} + \begin{pmatrix} b & b & b \\ b & b & b \end{pmatrix} = \begin{pmatrix} a_{11} + b & a_{12} + b & a_{13} + b \\ a_{21} + b & a_{22} + b & a_{23} + b \\  \end{pmatrix}$   
 #
-#     <br>
+# <br>
 #     
 # les formes sont désormais compatibles, les deux tableaux peuvent être ajoutés
 #     
@@ -527,12 +531,6 @@ except ValueError as e:
 # <br>
 #
 # les formes sont désormais compatibles, les deux tableaux ont pu être ajoutés
-
-# %% [markdown]
-# ## le broadcasting en dimension > 2
-
-# %% [markdown]
-# Naturellement le broadcasting se généralise à des dimensions supérieures à 2.
 
 # %% [markdown] {"tags": ["framed_cell"]}
 # ### exemple de broadcasting en dimension > 2
