@@ -12,7 +12,7 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 #   language_info:
@@ -46,7 +46,7 @@ HTML('<link rel="stylesheet" href="slides-notebook.css" />')
 import numpy as np
 from matplotlib import pyplot as plt
 
-# %% [markdown]
+# %% [markdown] {"tags": ["framed_cell"]}
 # **notions intervenant dans ce TP**
 #
 # sur les tableaux `numpy.ndarray`
@@ -69,7 +69,7 @@ from matplotlib import pyplot as plt
 # **n'oubliez pas d'utiliser le help en cas de problème.**
 
 # %% [markdown]
-# ## Lecture des codes RGB de couleurs d'un fichier
+# ## Création d'un patchwork
 
 # %% [markdown]
 # 1. Le fichier `rgb-codes.txt` contient une table de couleurs:
@@ -107,10 +107,11 @@ from matplotlib import pyplot as plt
 # et sauver ce patchwork dans le fichier `patchwork.jpg` avec `plt.imsave`
 # <br>
 #
-# 1. Relisez et Affichez votre fichier  
+# 1. Relisez et affichez votre fichier  
 #    attention si votre image vous semble floue c'est juste que l'affichage grossit vos pixels
 #    
-#
+# vous devriez obtenir quelque chose comme ceci
+# <img src="patchwork-all.jpg" width="200px">
 
 # %%
 # votre code
@@ -121,11 +122,11 @@ from matplotlib import pyplot as plt
 # %% [markdown]
 # 0. Lisez l'image `les-mines.jpg`
 #
-# 1. Créez un nouveau tableau `numpy.ndarray` en sommant avec l'opérateur `+` les valeurs RGB des pixels de votre image  
+# 1. Créez un nouveau tableau `numpy.ndarray` en sommant **avec l'opérateur `+`** les valeurs RGB des pixels de votre image  
 #
 # 2. Affichez l'image (pas terrible), son maximum et son type
 #
-# 3. Créez un nouveau tableau `numpy.ndarray` en sommant avec la fonction d'agrégation `np.sum` les valeurs RGB des pixels de votre image
+# 3. Créez un nouveau tableau `numpy.ndarray` en sommant **avec la fonction d'agrégation `np.sum`** les valeurs RGB des pixels de votre image
 #
 # 4. Affichez l'image, son maximum et son type
 #
@@ -176,13 +177,19 @@ from matplotlib import pyplot as plt
 # votre code
 
 # %% {"scrolled": true}
+# INDICE:
+
 # exemple de produit de matrices avec `numpy.dot`
 # le help(np.dot) dit: dot(A, B)[i,j,k,m] = sum(A[i,j,:] * B[k,:,m])
+
 i, j, k, m, n = 2, 3, 4, 5, 6
 A = np.arange(i*j*k).reshape(i, j, k)
 B = np.arange(m*k*n).reshape(m, k, n)
+
 C = A.dot(B)
 # or C = np.dot(A, B)
+
+A.shape, B.shape, C.shape
 
 # %% [markdown]
 # ## Exemple de qualité de compression
