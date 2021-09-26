@@ -92,7 +92,8 @@ from matplotlib import pyplot as plt
 #    * prend une liste de couleurs et la structure donnant le code des couleurs RGB
 #    * et retourne un tableau `numpy` avec un patchwork de ces couleurs  
 #    * (pas trop petits les patchs - on doit voir clairement les taches de couleurs  
-#    si besoin de compléter l'image mettez du noir rayé de blanc)
+#    si besoin de compléter l'image mettez du blanc  
+#    (`numpy.indices` peut être utilisé)
 # <br>
 # <br>   
 # 1. Tirez aléatoirement une liste de couleurs et appliquez votre fonction à ces couleurs.
@@ -108,6 +109,8 @@ from matplotlib import pyplot as plt
 #
 # 1. Relisez et Affichez votre fichier  
 #    attention si votre image vous semble floue c'est juste que l'affichage grossit vos pixels
+#    
+#
 
 # %%
 # votre code
@@ -124,21 +127,19 @@ from matplotlib import pyplot as plt
 #
 # 3. Créez un nouveau tableau `numpy.ndarray` en sommant avec la fonction d'agrégation `np.sum` les valeurs RGB des pixels de votre image
 #
-# 4. Affichez l'image
+# 4. Affichez l'image, son maximum et son type
 #
 # 5. Pourquoi cette différence ? Utilisez le help `np.sum?`
 #
-# 6. Passez l'image en niveaux de gris de type en entiers non-signés 8 bits  
+# 6. Passez l'image en niveaux de gris de type entiers non-signés 8 bits  
 # (de la manière que vous préférez)
 #
-# 7. Affichez l'image en niveaux de gris avec une table des couleurs comme Purples
-#
-# 8. Remplacez dans l'image en niveaux de gris,   
+# 7. Remplacez dans l'image en niveaux de gris,   
 # les valeurs >= à 127 par 255 et celles inférieures par 0  
 # Affichez l'image avec une carte des couleurs des niveaux de gris  
 # vous pouvez utilisez la fonction `numpy.where`
 #
-# 9. avec la fonction `numpy.unique`  
+# 8. avec la fonction `numpy.unique`  
 # regardez les valeurs différentes que vous avez dans votre image en noir et blanc
 
 # %%
@@ -148,45 +149,55 @@ from matplotlib import pyplot as plt
 # ## Image en sépia
 
 # %% [markdown]
-# Pour passer en sépia les valeurs R, G et B d'un pixel (dont encodées sur un entier non-signé 8 bits)  
+# Pour passer en sépia les valeurs R, G et B d'un pixel  
+# (encodées ici sur un entier non-signé 8 bits)  
 #
-# 1. on convertit ces valeurs par cette transformation  
-# $x_R = 0.393\, R + 0.769\, G + 0.189\, B$  
-# $x_G = 0.349\, R + 0.686\, G + 0.168\, B$  
-# $x_B = 0.272\, R + 0.534\, G + 0.131\, B$  
-# avec des $x_R$, $x_G$ et $x_B$ de type flottants  
-# 1. on convertit les valeurs $x_R$, $x_G$ et $x_B$ en `int`  
-# pas `uint8` pour ne pas avoir d'overflow (genre de 256 devenant 0)  
-# 1. puis on seuille les valeurs qui sont plus grandes que `255` à `255` 
+# 1. on transforme les valeurs $R$, $G$ et $B$ par la transformation  
+# $0.393\, R + 0.769\, G + 0.189\, B$  
+# $0.349\, R + 0.686\, G + 0.168\, B$  
+# $0.272\, R + 0.534\, G + 0.131\, B$  
+# (attention les calculs doivent se faire en flottants pas en uint8  
+# pour ne pas avoir, par exemple, 256 devenant 0)  
+# 1. puis on seuille les valeurs qui sont plus grandes que `255` à `255`
+# 1. naturellement l'image doit être ensuite remise dans un format correct  
+# (uint8 ou float entre 0 et 1)
 
 # %% [markdown]
 # **Exercice**
 #
-# En utilisant la fonction `numpy.dot` et autres fonctions `numpy` de base sans aucune boucle  `for`
 # 1. Faites une fonction qui prend en argument une image RGB et rend une image RGB sépia  
-# (vous pouvez généralisez votre fonction à toute transformation linéaire de RGB)  
+# la fonction `numpy.dot` doit être utilisée (si besoin, voir l'exemple ci-dessous) 
+#
 # 1. Passez votre patchwork de couleurs en sépia  
 # Lisez le fichier `patchwork-all.jpg` si vous n'avez pas de fichier perso
-# 2. Passez l'image `les-mines.jpg` en sépia
-# 4. en option - Faites en sorte que votre fonction sepia puisse prendre un RGB-A  
-#    (la transformation en sépia doit simplement conserver la même transparence)
+# 2. Passez l'image `les-mines.jpg` en sépia   
 
 # %%
 # votre code
+
+# %% {"scrolled": true}
+# exemple de produit de matrices avec `numpy.dot`
+# le help(np.dot) dit: dot(A, B)[i,j,k,m] = sum(A[i,j,:] * B[k,:,m])
+i, j, k, m, n = 2, 3, 4, 5, 6
+A = np.arange(i*j*k).reshape(i, j, k)
+B = np.arange(m*k*n).reshape(m, k, n)
+C = A.dot(B)
+# or C = np.dot(A, B)
 
 # %% [markdown]
 # ## Exemple de qualité de compression
 
 # %% [markdown]
-# 1. Importez la librairie `Image`de `PIL` (pillow) 
-# (vous devez peut être installer PIL (pillow) dans votre environnement)
-#
-# 2. Lisez le fichier 'les-mines.jpg' avec `Image.open` et avec `plt.imread`  
+# 1. Importez la librairie `Image`de `PIL` (pillow)   
+# (vous devez peut être installer PIL dans votre environnement)
+# 1. Quelle est la taille du fichier 'les-mines.jpg' sur disque ?
+# 1. Lisez le fichier 'les-mines.jpg' avec `Image.open` et avec `plt.imread`  
 #
 # 3. Vérifiez que les valeurs contenues dans les deux objets sont proches
 #
 # 4. Sauvez (toujours avec de nouveaux noms de fichiers)  
-# l'image lue par `imread` avec `plt.imsave` et celle lue par `Image.open` avec `save`  
+# l'image lue par `imread` avec `plt.imsave`  
+# l'image lue par `Image.open` avec `save` et une `quality=100`  
 # (`save` s'applique à l'objet créé par `Image.open`)
 #
 # 5. Quelles sont les tailles de ces deux fichiers sur votre disque ?  
