@@ -11,7 +11,7 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3 (ipykernel)
+#     display_name: Python 3
 #     language: python
 #     name: python3
 #   language_info:
@@ -870,7 +870,7 @@ data[12000:12007], data3[8000:8005]
 MyAudio(data3)
 
 # %% [markdown] tags=["level_intermediate"]
-# ## la fraction la plus proche (avancés)
+# ## la fraction la plus proche (avancés - sans exercice)
 
 # %% [markdown] tags=["level_intermediate"]
 # on peut s'amuser à calculer, pour chaque note, la fraction la plus proche - si on se restreint à des rationnels avec un dénominateur "petit"
@@ -904,13 +904,12 @@ def closest1(note):
 tierce, quinte = ratios[4], ratios[7]
 closest1(quinte)
 
+
 # %% tags=["level_intermediate"]
 # du coup ça se complique un peu
 
-import math    # pour math.inf = infinity
-
 def closest2(note):
-    minimum = math.inf
+    minimum = np.inf
     result = None
     for rational in rationals:
         if abs(note-rational) < minimum:
@@ -952,6 +951,5 @@ closest(quinte)
 
 # %% [markdown] tags=["level_intermediate"]
 # si on ne garde que les notes qui sont très proches - avec une erreur relative de moins de 0.5%  
-# on trouve les intervalles do-fa et do-sol  
-# (c'est assez logique que
+# on trouve les intervalles do-fa et do-sol
 
