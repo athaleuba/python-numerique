@@ -12,7 +12,7 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 #   language_info:
@@ -90,7 +90,7 @@ import numpy as np
 # ```python
 # tab%2 == 0
 # ```
-# ou encore
+# ou encore - équivalent mais en appelant une fonction plutôt que l'opérateur `==`
 #     
 # ```python
 # np.equal(tab%2, 0)
@@ -98,7 +98,7 @@ import numpy as np
 # <br>
 #     
 # les résultats des comparaisons élément-par-élément  
-# sont rangés dans un tableau `numpyp.ndarray`  
+# sont rangés dans un tableau `np.ndarray`  
 # de même taille que le tableau initial
 #    
 # ```python
@@ -112,7 +112,7 @@ import numpy as np
 #        
 # **remarquez**
 #     
-# * dans l'expression `tab%2 == 0` et `np.equal(tab, 0)`
+# * dans l'expression `tab%2 == 0` et `np.equal(tab % 2, 0)`
 # * le broadcast de `0` en un tableau de `0` de la même taille que `tab`
 
 # %%
@@ -299,7 +299,7 @@ tab
 # <br>
 #     
 # 4 règles
-# * vous ne pouvez **pas** utiliser les opérateurs logiques `Python` `and`, `or`, `not`  
+# * vous ne pouvez **pas** utiliser les opérateurs logiques Python `and`, `or`, `not`  
 #   (ils ne sont **pas** vectorisés)
 # * vous devez utiliser les opérateurs logiques *bit-à-bit* `&` `|`  `~`
 # * ou leur équivalent en fonction `numpy`  
@@ -368,44 +368,106 @@ try:
 except Exception as exc:
     print("OOPS - ne marche pas avec numpy\n", exc)
 
-# %% [markdown] {"tags": ["level_intermediate"]}
+# %% [markdown]
 # ## modifier les éléments dans tableau d'origine
+
+# %% [markdown] {"tags": ["framed_cell"]}
+# ### affecter une sélection
+#
+# <br>
+#
+# avec une expression de *sélection* de cette forme `tab[mask]`   
+# on peut **aussi modifier** (ces emplacements dans) le tableau de départ  
+# en affectant directement une valeur  
+# remarquez que la sélection se trouve à gauche du signe `=`
+#
+# ```python
+# tab = np.array([[1, 2, 3], [4, 5, 6]])
+# tab[tab % 2 == 0] = 100
+# print(tab)
+# [[  1 100   3]
+#  [100   5 100]]
+# ```
+
+# %%
+# le code
+tab = np.array([[1, 2, 3], [4, 5, 6]])
+tab[tab % 2 == 0] = 100
+print(tab)
+
+# %% [markdown] {"tags": ["framed_cell", "level_intermediate"]}
+# ### c'est fragile (1)
+#
+# <br>
+#
+# par contre il faut être un peu prudent; certaines formes, pourtant voisines en apparence, ne vont pas fonctionner
+#
+# **1er cas**
+#
+# maladroitement, je range la sélection dans une variable  
+# la sélection ne se trouve plus à gauche du `=`  
+# dans cette forme l'affectation va en fait modifier un tableau temporaire  
+# bref, ça **ne fonctionne plus** !  
+#
+#
+# ```python
+# tab = np.array([[1, 2, 3], [4, 5, 6]])
+# view = tab[tab%2==0]
+# view = 100
+# print(tab) 
+# -> ([[1, 2, 3], # et non [1, 100, 3],...
+#      [4, 5, 6]])
+# ```    
+
+# %% {"tags": ["level_intermediate"]}
+# le code
+tab = np.array([[1, 2, 3], [4, 5, 6]])
+view = tab[tab%2==0]
+view = 100
+print(tab)
+
+# %% [markdown] {"tags": ["framed_cell", "level_intermediate"]}
+# ### c'est fragile (2)
+#
+# **2ème cas**
+#
+# imaginons que je ne veux modifier **que le premier** des éléments pair  
+# je vais essayer en *indexant* ma sélection  
+# mais ça **ne fonctionne pas** comme espéré  
+# ici encore l'effet de bord se perd dans la nature  
+# et le tableau original n'est pas modifié
+#
+#
+# ```python
+# tab = np.array([[1, 2, 3], [4, 5, 6]])
+# tab[tab%2==0][0] = 100
+# print(tab) 
+# -> ([[1, 2, 3], # et non [1, 100, 3],...
+#      [4, 5, 6]])
+# ```    
+
+# %% {"tags": ["level_intermediate"]}
+# le code
+tab = np.array([[1, 2, 3], [4, 5, 6]])
+tab[tab%2==0][0] = 100
+print(tab) 
+
 
 # %% [markdown] {"tags": ["framed_cell", "level_intermediate"]}
 # ### repérer les éléments par leurs indices
 #
 # <br>
-#
-# quand nous filtrons les éléments d'un tableau à partir d'un masque de booléens  
-# nous obtenons un nouveau `numpy.ndarray` *original*  
-# le modifier ne modifie pas les éléments dans le tableau d'origine
-#
-# ```python
-# tab = np.array([[1, 2, 3], [4, 5, 6]])
-# res = tab[~(tab%2==0)]
-# res[0] = 1000
-# tab 
-# -> ([[1, 2, 3], # et non [1000, 2, 3],...
-#      [4, 5, 6]])
-# ```    
-# <br>
 #     
-# pour modifier les éléments sélectionnés dans le tableau d'origine  
-# 1. on le fait au moment de leur sélection (déjà vu)
-# 1. on repère les éléments par leur indice dans le tableau d'origine
+# dans ce genre de situation, pour modifier les éléments sélectionnés dans le tableau d'origine, on peut repèrer les éléments par leur indice dans le tableau d'origine
 #
 # <br>
 #     
-# pour calculer ces indices, deux fonctions:
+# et pour calculer ces indices, deux fonctions:
 # * la fonction `numpy.nonzero`
 # * la fonction `numpy.argwhere` (avancé)
 
-# %% {"tags": ["level_intermediate"]}
-# le code
-tab = np.array([[1, 2, 3], [4, 5, 6]])
-res = tab[~(tab%2==0)]
-res[0] = 1000
-print(tab)
+# %% [markdown] {"tags": ["level_intermediate"]}
+# ***
 
 # %% [markdown] {"tags": ["framed_cell", "level_intermediate"]}
 # ### la fonction `numpy.nonzero`

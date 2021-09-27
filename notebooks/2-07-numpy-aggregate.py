@@ -2,7 +2,7 @@
 # ---
 # jupyter:
 #   jupytext:
-#     cell_metadata_filter: all,-hidden,-heading_collapsed,-run_control
+#     cell_metadata_filter: all,-hidden,-heading_collapsed,-run_control,-trusted
 #     cell_metadata_json: true
 #     notebook_metadata_filter: all, -jupytext.text_representation.jupytext_version,
 #       -jupytext.text_representation.format_version, -language_info.version, -language_info.codemirror_mode.version,
@@ -12,7 +12,7 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 #   language_info:
@@ -201,10 +201,10 @@ type(np.min(vec))
 # <br>
 #     
 # pour générer des booléens, générer aléatoirement des entiers entre `0` et `2` non-compris  
-# et demander un `dtype` `numpy.bool` ou `bool`
+# et demander un `dtype` `bool` (le type `np.bool` existe mais il est *deprecated*)
 #     
 # ```python
-# tab = np.random.randint(0, 2, size=(10), dtype=np.bool)
+# tab = np.random.randint(0, 2, size=(10), dtype=bool)
 # ```
 #     
 # ```python
@@ -223,11 +223,11 @@ type(np.min(vec))
 
 # %%
 # le code
-tab = np.random.randint(0, 2, size=(10), dtype=np.bool)
+tab = np.random.randint(0, 2, size=(10), dtype=bool)
 print(np.all(tab), np.any(tab))
 print(tab.all(), tab.any())
 print(tab.sum() == len(tab), tab.sum() != 0)
-print(np.all(np.random.randint(1, 2, size=(10), dtype=np.bool))) # tous des 1
+print(np.all(np.random.randint(1, 2, size=(10), dtype=bool))) # tous des 1
 
 
 # %% [markdown]
@@ -238,7 +238,7 @@ print(np.all(np.random.randint(1, 2, size=(10), dtype=np.bool))) # tous des 1
 #
 # 2. créez une fonction manuelle (sans utiliser `np.all`  et `np.any`) qui prend un tableau numpy de booléens en paramètre et détermine si tous les éléments du tableau sont faux.
 
-# %% {"trusted": true}
+# %%
 # votre code
 def fake_all(tab):
     pass
@@ -354,13 +354,35 @@ tab = np.arange(120).reshape(2, 3, 4, 5)
 
 # %%
 tab.sum(axis=0)
+# %% [markdown] {"tags": ["level_advanced"]}
+# pour les usages (trés) avancés, remarquons qu'on pourrait même passer comme `axis` *plusieurs* dimensions
+#
+# par exemple
+#
+# ```python
+# tab.sum(axis=(1, 2))
+# ```
+#
+# on généralise simplement: au lieu de faire la somme le long d'une droite, ici on va faire la somme sur un plan
+#
+# et de la même façon qu'en faisant `sum(axis=0)` on était passé
+# d'une entrée de *shape* (2, 3, 4, 5) à une sortie de *shape* (3, 4, 5)
+#
+# eh bien la shape de `tab.sum(axis=(1, 2))` va être (2, 5); les deux dimensions centrales, puisqu'on les a 'consommées' pour faire la somme, ont disparu du résultat
+#
+
+# %% {"tags": ["level_advanced"]}
+# le code
+tab.sum(axis=(1, 2))
+
 # %% [markdown] {"tags": ["framed_cell"]}
 # ### min et max globaux en dimension 4
 #
 # <br>
-#     
 #
-# on recherche l'indice (l'argument) du plus grand élément du tableau `argmax`
+# on recherche l'indice (l'emplacement, pas la valeur) du plus grand élément du tableau 
+#
+# c'est la méthode `argmax` qu'il nous faut
 #     
 # ```python
 # tab = np.arange(120).reshape(2, 3, 4, 5)
@@ -384,11 +406,6 @@ tab.sum(axis=0)
 # tab.argmax() # 119
 # np.unravel_index(tab.argmax(), tab.shape) # (1, 2, 3, 4)
 # ```
-#
-# <br>
-#   
-# **exercice avancé**
-# 1. proposez le code de la fonction `np.unravel_index`
 
 # %%
 # le code
@@ -397,9 +414,14 @@ print(    tab.argmax()    )
 
 print(    np.unravel_index(tab.argmax(), tab.shape)    )
 
+# %% [markdown] {"tags": ["level_advanced"]}
+# **exercice avancé**
+# 1. proposez le code de la fonction `np.unravel_index`
+
 # %% {"tags": ["level_advanced"]}
 # votre code ici
 
-# %%
+# %% {"tags": ["level_advanced"]}
+# devrait retourner [1, 2, 0, 4]
 unravel_index(104, (2, 3, 4, 5))
 

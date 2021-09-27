@@ -64,7 +64,7 @@ import numpy as np
 # donnez lui la même forme que le premier tableau
 # <br>
 #
-# 1. utilisez `numpy.round` pour arrondir les flottants à 2 décimales  
+# 1. utilisez `np.round` pour arrondir les flottants à 2 décimales  
 # sans création d'un nouveau tableau (pensez à `out=`)
 # <br>
 #
@@ -99,7 +99,7 @@ import numpy as np
 #     
 # <br>
 #     
-# c'est clairement sous-optimal: place-mémoire créer inutilement, perte de temps et de lisibilité
+# c'est clairement sous-optimal: place-mémoire créée inutilement, perte de temps et de lisibilité
 #     
 # <br>
 #     
@@ -281,7 +281,7 @@ mat + np.arange(10, 60, 10)
 mat + np.arange(10, 60, 10).reshape(1, 5)
 
 # %% [markdown] {"tags": ["framed_cell"]}
-# ### opération entre une ligne et plusieurs matrices et groupes de matrices
+# ### opération entre une ligne et un groupes de matrices
 #
 # <br>
 #     
@@ -332,7 +332,7 @@ print(mat)
 mat + [1000, 2000, 3000, 4000, 5000]   
 
 # %% [markdown] {"tags": ["framed_cell"]}
-# ### opération entre une colonne et une ou plusieurs  matrices
+# ### opération entre une colonne et une matrice
 # <br>
 #  
 # c'est pareil...
@@ -393,8 +393,8 @@ mat+col
 # <br>
 #     
 # **exercice**
-# 1. créer une ligne
-# 1. créer une colonne
+# 1. créer une ligne contenant par exemple 0, 1, 2, 3, 4
+# 1. créer une colonne contenant par exemple 10, 20, 30
 # 1. ajouter les deux
 #     
 # <br>
