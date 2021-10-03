@@ -97,7 +97,7 @@
 # elle doit être modifiée sans utiliser d'affectation Python  
 # (on veut faire ce qu'on appelle en informatique un *tri en place*)
 # <br>
-#    
+#
 # 1. Constater que les lignes de la dataframe sont triées  
 # en affichant les 3 premières lignes de la dataframe
 # <br>
@@ -185,6 +185,6 @@ df_sorted = df.sort_values(by=['Age', 'Fare']).copy()
 # <br>
 #
 # Cela peut, par exemple, servir à réordonner la dataframe du Titanic  
-# qui a été triée en place dans l'ordre des `Age`, `Fare` croissants    
+# qui a été triée en place dans l'ordre des `Age`, `Fare` croissants  
 # par ordre d'index de ligne croissants
 
