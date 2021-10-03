@@ -18,8 +18,8 @@
 #     name: python
 #     nbconvert_exporter: python
 #     pygments_lexer: ipython3
-#   notebookname: "intro \xE0 pandas"
-#   version: '1.0'
+#   nbhosting:
+#     title: read_csv et dataframe
 # ---
 
 # %%
