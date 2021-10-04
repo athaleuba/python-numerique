@@ -33,7 +33,7 @@ HTML('<link rel="stylesheet" href="slides-notebook.css" />')
 # ## introduction sur les tables de données
 # <br>
 #
-# nous avons vu qq fonctions de `numpy`, pour manipuler les `numpy.ndarray` qui sont des tableaux
+# nous avons vu quelques fonctions de `numpy`, pour manipuler les `numpy.ndarray` qui sont des tableaux
 # * multidimensionnels
 # * homogènes
 # * d'éléments de taille fixe

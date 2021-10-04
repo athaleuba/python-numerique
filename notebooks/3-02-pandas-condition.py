@@ -404,7 +404,7 @@ df.isna().sum(axis=1)
 # 1. soit on applique la fonction deux fois  
 #    e.g. `df.isna().sum().sum()`
 # 1. soit on peut passer par le sous-tableau `numpy`  
-#   et là la fonction `numpy` donnera le résultat global
+#   et là la fonction `numpy.sum()` donnera le résultat global
 #
 # <br>
 #
