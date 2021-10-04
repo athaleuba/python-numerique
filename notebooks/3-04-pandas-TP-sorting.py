@@ -42,8 +42,7 @@
 
 # %% [markdown]
 # ## import des librairies et des données
-
-# %% [markdown]
+#
 # 1. Importez les librairies `pandas`et `numpy`
 # <br>
 #
@@ -76,18 +75,17 @@
 
 # %% [markdown]
 # ## tri des lignes d'une dataframe
-
-# %% [markdown]
+#
 # Le but de cet exercice est d'organiser les lignes d'une dataframe suivant l'ordre d'une ou de plusieurs colonnes.
 #
-# Utilisez la fonction `pandas.dataframe.sort_values`
+# Utilisez la méthode `df.sort_values()`
 #
 # 1. pour créer une **nouvelle** dataframe  
 # dont les lignes sont triées dans l'ordre croisant des classes des passagers  
 # on veut être sûr d'avoir une nouvelle dataframe sans considération de ce que retourne la fonction `sort_values`
 # <br>
 #
-# 1. Pour constater qu'elles sont triées, affichez les 3 premières lignes de la dataframe  
+# 1. pour constater qu'elles sont triées, affichez les 3 premières lignes de la dataframe  
 # vous devez voir que la colonne des `Pclass` est triée  
 # que les lignes ont changé de place dans la table  
 # et que leur indexation a été conservée
@@ -98,35 +96,33 @@
 # (on veut faire ce qu'on appelle en informatique un *tri en place*)
 # <br>
 #
-# 1. Constater que les lignes de la dataframe sont triées  
+# 1. constater que les lignes de la dataframe sont triées  
 # en affichant les 3 premières lignes de la dataframe
 # <br>
 #
-# 1. Plotez la colonne des ages de la  dataframe  
+# 1. plotez la colonne des ages de la  dataframe  
 # Que constatez-vous ?
 # <br>
 #
-# 1. Plotez la colonne dans l'ordre des ages croissants
+# 1. plotez la colonne dans l'ordre des ages croissants
 # <br>
 
 # %% [markdown]
 # ## tri des lignes *égales* au sens d'un premier critère d'une dataframe
-
-# %% [markdown]
+#
 # On reprend la dataframe d'origine
 #
 # 1. Affichez les ages des passagers d'index `673` et `746`  
 # Que constatez-vous ?
 # <br>
 #
-# 1. Utilisez l'attribut `by` de `pandas.dataframe.sort_values`  
+# 1. Utilisez le paramètre `by` de `df.sort_values()`  
 # afin d'indiquer aussi une seconde colonne - par exemple `Fare`  
 # pour trier les lignes identiques au sens de la première colonne  
-# créez une nouvelle dataframe
+# rangez dans une nouvelle dataframe
 # <br>
 #
 # 1. Sélectionnez, dans la nouvelle dataframe, la sous-dataframe dont les ages ne sont pas définis  
-# (i.e. ils *sont `na`*)
 # <br>
 #
 # 1. Combien manque-il d'ages ?
@@ -136,24 +132,27 @@
 # en début (voir avec `head`) ou en fin (voir avec `tail`) de dataframe ?
 # <br>
 #
-# 1. Trouvez le paramètre de `pandas.DataFrame.sort_values`  
+# 1. Trouvez le paramètre de `sort_values()`  
 # qui permet de mettre ces lignes en début de dataframe lors du tri
+# <br>
+#
+# 1. produire une nouvelle dataframe en ne gardant que les ages connus,
+#    et triée selon les ages, puis les prix de billet
 
-# %%
-df_sorted = df.sort_values(by=['Age', 'Fare']).copy()
-
-# %% [markdown]
-# ## tri des colonnes d'une dataframe
-
-# %% [markdown]
+# %% [markdown] {"tags": ["level_intermediate"]}
+# ## tri d'une dataframe selon une colonne
+#
 # En utilisant `pandas.DataFrame.sort_values` il est possible de trier une dataframe  
 # dans l'axe de ses colonnes
 #
 # 1. Créez une dataframe de 4 lignes et 5 colonnes de valeurs entières aléatoires entre 0 et 100  
-# mettez comme index (par exemple):  
-# aux lignes  `'un'`, `'deux'`, `'trois'` et `'quatre'`  
-# aux colonnes `'a'`, `'b'`, `'c'`, `'d'` et `'e'`
-# <br>
+#    mettez comme index (par exemple):  
+#    aux lignes  `'un'`, `'deux'`, `'trois'` et `'quatre'`  
+#    aux colonnes `'a'`, `'b'`, `'c'`, `'d'` et `'e'`  
+#    **indice**: voyez la documentation de `pd.DataFrame` 
+#    pour construire une dataframe  
+#    par programme
+#    <br>
 #
 # 1. affichez la dataframe
 # <br>
@@ -164,10 +163,9 @@ df_sorted = df.sort_values(by=['Age', 'Fare']).copy()
 # 1. Affichez la dataframe
 # <br>
 
-# %% [markdown]
-# ## tri des index d'une dataframe
-
-# %% [markdown]
+# %% [markdown] {"tags": ["level_intermediate"]}
+# ## tri d'une dataframe selon l'index
+#
 # En utilisant `pandas.DataFrame.sort_index` il est possible de trier une dataframe  
 # dans l'axe de ses index de ligne ou de colonnes  
 # Utilisez le même genre de dataframe qu'à l'exercice précédent
