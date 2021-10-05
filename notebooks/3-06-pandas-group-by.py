@@ -653,6 +653,129 @@ print("après", df.columns)
 # le code
 df.groupby(['Age-class', 'Survived', ]).size()
 
+# %% [markdown] {"tags": ["framed_cell"]}
+# ## `pivot_table()`
+#
+# <br>
+#
+# le type d'opérations que l'on a fait dans ce notebook est fréquent  
+# spécifiquement, on veut souvent afficher:
+#
+# * la valeur (précisément, une aggrégation des valeurs) d'une colonne  
+# * en fonction de deux autres colonnes (catégorielles)  
+# * qui sont utilisées dans les directions horizontale et verticale 
+#
+# <br>
+#
+# exemple précis, on pourrait visualiser comme ceci
+# * le taux de survie  
+# * par classe de cabine (en lignes)
+# * et par genre (en colonnes)
+# <img src="media/pivot-titanic.png" width=200px>
+#
+# <br>
+#
+# il existe une méthode `pivot_table()` qui s'avère très pratique  
+# pour faire ce genre de traitement **en un seul appel**  
+# comme toujours, pensez à lire la doc avec `df.pivot_table?`
+#
+# <br>
+#
+# les paramètres les plus importants sont 
+# * `values` : la (ou les) colonne(s) qu'on veut regarder  
+#   ce seront les valeurs **dans le tableau**
+# * `index` : la (ou les) colonne(s) utilisée(s) pour **les lignes** du résultat
+# * `columns` : idem pour **les colonnes**
+# * `aggfunc` : la fonction d'aggrégation à utiliser sur les `values`  
+#   il y a toujours plusieurs valeurs qui tombent dans une case du résultat  
+#   il faut les agréger; par défaut on fait **la moyenne**
+#
+# <br>
+#
+# ainsi la table ci-dessus s'obtient **tout simplement** comme ceci
+#
+# ```python
+# df.pivot_table(
+#     values='Survived',
+#     index='Pclass',
+#     columns='Sex',
+# )
+# ```
+
+# %%
+# #df.pivot_table?
+
+# %%
+# pour obtenir la table ci-dessus
+
+df.pivot_table(
+    values='Survived',
+    index='Pclass',
+    columns='Sex',
+)
+
+# %% [markdown] {"tags": ["framed_cell"]}
+# ### `pivot_table()` et agrégation
+#
+# <br>
+#
+# dans le cas présent on n'a **pas précisé** la fonction d'**aggrégation**  
+# du coup c'est la moyenne qui est utilisée, sur la valeur de `Survived`  
+# qui vaut 0 ou 1 selon les cas, et donc on obtient le taux de survie  
+#
+# <br>
+#
+# **exercice**
+# obtenez la même table que ci-dessus avec cette fois le nombre de survivants
+
+# %%
+# votre code
+
+# %% [markdown] {"tags": ["framed_cell"]}
+# ### `pivot_table()` et multi-index
+#
+# <br>
+#
+# comme on l'a vu, il est possible de passer aux 3 paramètres  
+# `values`, `index` et `columns` des **listes** de colonnes
+#
+# <br>
+#
+# le résultat dans ce cas utilise un `MultiIndex`  
+# pour en quelque sorte "ajouter une dimension"  
+# dans l'axe des x ou des y, selon les cas
+#
+# <br>
+#
+# **exercice**  
+# observez les résultats obtenus dans ces cas avec *e.g.*  
+# * comme valeur supplémentaire `Age`
+# * comme critère supplémentaire `Sex`  
+# et notamment que pouvez-vous dire des index (en lignes et en colonnes)  
+# du résultat produit par `pivot_table()`
+
+# %%
+# relisons depuis le fichier pour être sûr d'avoir la colonne 'Age'
+df = pd.read_csv('titanic.csv')
+
+# %%
+# votre code
+# plusieurs values
+
+# %%
+# votre code
+# plusieurs columns
+
+# %%
+# votre code
+# plusieurs index
+
+# %%
+df3.columns
+
+# %%
+df4.index
+
 # %% [markdown] {"tags": ["framed_cell", "level_intermediate"]}
 # ## accès au dictionnaire des groupes
 #
