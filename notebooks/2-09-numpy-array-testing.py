@@ -334,8 +334,7 @@ tab
 #     
 # <br>
 #     
-#     
-# et donc en version `nunmpy`
+# et donc en version `numpy`
 #     
 # ```python
 # np.logical_and(tab >= 25, tab < 75)
