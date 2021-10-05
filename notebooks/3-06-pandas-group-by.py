@@ -35,7 +35,7 @@ from IPython.display import HTML
 HTML('<link rel="stylesheet" href="slides-notebook.css" />')
 
 # %% [markdown]
-# # python numérique - regrouper des données
+# # regrouper par critères
 
 # %% [markdown]
 # ## les données et les librairies

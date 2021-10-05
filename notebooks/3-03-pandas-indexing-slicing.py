@@ -27,7 +27,7 @@ from IPython.display import HTML
 HTML('<link rel="stylesheet" href="slides-notebook.css" />')
 
 # %% [markdown]
-# # python-numérique - accès aux sous-tableaux
+# # indexation et accès aux sous-tableaux
 
 # %%
 import pandas as pd

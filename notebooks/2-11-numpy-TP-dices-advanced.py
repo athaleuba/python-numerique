@@ -23,7 +23,7 @@
 # ---
 
 # %% [markdown]
-# # python-numérique - exercice
+# # exercice sur le *broadcasting*
 
 # %%
 import numpy as np

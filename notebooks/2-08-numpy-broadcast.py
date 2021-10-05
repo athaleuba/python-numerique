@@ -34,7 +34,7 @@ from IPython.display import HTML
 HTML('<link rel="stylesheet" href="slides-notebook.css" />')
 
 # %% [markdown]
-# # python-numérique - broadcasting
+# # *broadcasting*
 
 # %%
 import numpy as np

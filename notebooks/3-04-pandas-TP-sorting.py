@@ -31,7 +31,7 @@
 # </div>
 
 # %% [markdown]
-# # python-numérique - TP sur le tri d'une dataframe
+# # TP sur le tri d'une dataframe
 
 # %% [markdown]
 # **Notions intervenant dans ce TP**

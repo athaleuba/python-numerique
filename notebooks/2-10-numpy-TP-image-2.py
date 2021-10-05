@@ -34,7 +34,7 @@ from IPython.display import HTML
 HTML('<link rel="stylesheet" href="slides-notebook.css" />')
 
 # %% [markdown]
-# # python-numérique - suite du TP simple avec des images
+# # suite du TP simple avec des images
 #
 # merci à Wikipedia et à stackoverflow
 #

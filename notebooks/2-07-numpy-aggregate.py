@@ -23,7 +23,7 @@
 # ---
 
 # %% [markdown]
-# # python-numérique - fonctions d'agrégation
+# # fonctions d'agrégation
 
 # %%
 from IPython.display import HTML

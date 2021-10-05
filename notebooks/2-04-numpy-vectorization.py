@@ -26,7 +26,7 @@ from IPython.display import HTML
 HTML('<link rel="stylesheet" href="slides-notebook.css" />')
 
 # %% [markdown]
-# # python-numérique - vectorisation
+# # vectorisation
 
 # %% [markdown]
 # ## contenu de ce notebook (sauter si déjà acquis)

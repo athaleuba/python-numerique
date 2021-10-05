@@ -27,7 +27,7 @@ from IPython.display import HTML
 HTML('<link rel="stylesheet" href="slides-notebook.css" />')
 
 # %% [markdown]
-# # python numérique - TP sur les types des colonnes
+# # TP sur les types des colonnes
 
 # %% [markdown]
 # ## import des librairies et des données

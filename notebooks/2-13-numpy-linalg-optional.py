@@ -37,7 +37,7 @@ HTML('<link rel="stylesheet" href="slides-notebook.css" />')
 import numpy as np
 
 # %% [markdown]
-# # python-numérique - algèbre linéaire
+# # algèbre linéaire
 
 # %% [markdown]
 # ## contenu de ce notebook (notebook à sauter)

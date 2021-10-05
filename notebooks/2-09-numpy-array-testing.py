@@ -34,7 +34,7 @@ from IPython.display import HTML
 HTML('<link rel="stylesheet" href="slides-notebook.css" />')
 
 # %% [markdown]
-# # python-numérique tests des tableaux
+# # tests et masques sur tableaux
 
 # %%
 import numpy as np

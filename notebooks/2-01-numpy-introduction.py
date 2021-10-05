@@ -40,7 +40,7 @@ HTML('<link rel="stylesheet" href="slides-notebook.css" />')
 # ```
 
 # %% [markdown]
-# # python-numérique - introduction
+# # Python-numérique - introduction
 
 # %% [markdown]
 # ## contenu de ce notebook (sauter si déjà acquis)
@@ -62,7 +62,7 @@ HTML('<link rel="stylesheet" href="slides-notebook.css" />')
 # d'où le recours à la librairie `numpy`
 
 # %% [markdown] tags=["framed_cell"]
-# ## objectifs de python-numérique
+# ## objectifs de Python-numérique
 #
 # <br>
 #     
@@ -74,7 +74,7 @@ HTML('<link rel="stylesheet" href="slides-notebook.css" />')
 #     
 # <br>
 #
-# nous allons maintenant aborder le cours de **python-numérique**
+# nous allons maintenant aborder le cours de **Python-numérique**
 #     
 # <br>
 #     

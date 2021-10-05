@@ -33,7 +33,7 @@ from IPython.display import HTML
 HTML('<link rel="stylesheet" href="slides-notebook.css" />')
 
 # %% [markdown]
-# # python-numérique - la mémoire
+# # la mémoire
 
 # %% [markdown]
 # ## contenu de ce notebook (sauter si déjà acquis)

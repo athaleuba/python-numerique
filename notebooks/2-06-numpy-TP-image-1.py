@@ -30,7 +30,7 @@
 # </div>
 
 # %% [markdown]
-# # python-numérique - TP simple avec des images
+# # TP simple avec des images
 #
 # merci à Wikipedia et à stackoverflow
 #

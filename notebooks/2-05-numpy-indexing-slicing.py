@@ -38,7 +38,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 # %% [markdown]
-# # python-numérique indexing and slicing
+# # indexation et *slicing*
 
 # %% [markdown]
 # ## contenu de ce notebook (sauter si déjà acquis)
