@@ -24,7 +24,7 @@ parts:
   - file: 3-04-pandas-TP-sorting
   - file: 3-05-pandas-TP-type-columns
   - file: 3-06-pandas-group-by
-  - file: 3-07-pandas-creation-dataframe
+  - file: 3-07-pandas-create-aggregate
   - file: 3-08-pandas-TP-covid
 - caption: "matplotlib"
   chapters:
