@@ -52,7 +52,7 @@ import numpy as np # pandas reposant sur numpy on a souvent besoin des deux libr
 #
 # <br>
 #
-# ils ont priviligié le repérage des éléments d'une dataframe **par les index**  
+# ils ont privilégié le repérage des éléments d'une dataframe **par les index**  
 # (les **noms** de colonnes et les **labels** de lignes)  
 # et **pas** par les **indices** comme en Python ou en `numpy`
 #
@@ -62,7 +62,7 @@ import numpy as np # pandas reposant sur numpy on a souvent besoin des deux libr
 #
 # * parce que quand vous utilisez `pandas`  
 #   l'ordre dans lequel sont les données est généralement secondaire  
-#   et on préfère faire référence aux données par leur identifiant (index donc)  
+#   et on préfère faire référence aux données par leur identifiant (*index* donc)  
 #
 # * si vous n'avez pas besoin d'index particuliers  
 #   i.e. si vos données se manipulent facilement à base d'indices  
@@ -267,7 +267,7 @@ mat
 # <br>
 #
 # la différence entre les deux est que `loc` se base sur les **index**  
-# alors que `iloc` (retenir: *i* pour *integer*) se base sur les indices
+# alors que `iloc` (retenir: *i* pour *integer*) se base sur les **indices**
 #
 # ```python
 # df = pd.read_csv('titanic.csv', index_col='PassengerId')
@@ -656,7 +656,6 @@ df['Cabin'].iloc[-4:]
 
 # %%
 # le code
-# 
 df = pd.read_csv('titanic.csv', index_col='PassengerId')
 
 df_survived = (df['Survived'] == 1)

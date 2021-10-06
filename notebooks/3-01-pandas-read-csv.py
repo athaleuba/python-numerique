@@ -208,7 +208,7 @@ df.head(2)
 #
 # <br>
 #
-# la méthode `describe()` vous donne un premier apperçu rapide de vos données
+# la méthode `describe()` vous donne un premier aperçu rapide de vos données
 #
 # <br>
 #
@@ -380,7 +380,7 @@ df.columns[0]
 #
 # <br>
 #
-# les colonnes ont un traitement priviligié en `pandas`
+# les colonnes ont un traitement privilégié en `pandas`
 #
 # <br>
 #
@@ -394,7 +394,7 @@ df.columns[0]
 # * on remarque les `891` entrées
 # * on remarque les indices des lignes de `0` à `890` 
 # * on constate que le type des éléments de cette colonne est `float64`
-# * on constate que l'age du passage d'indice `888` est manquant `NaN` (*Not a Number*)
+# * on constate que l'age du passage d'indice `3` est manquant `NaN` (*Not a Number*)
 #
 # ```python
 # df['Age']
