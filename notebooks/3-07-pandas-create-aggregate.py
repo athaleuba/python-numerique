@@ -19,7 +19,7 @@
 #     nbconvert_exporter: python
 #     pygments_lexer: ipython3
 #   nbhosting:
-#     title: "cr\xE9er une dataframe"
+#     title: "cr\xE9ation - agr\xE9gation"
 # ---
 
 # %%
