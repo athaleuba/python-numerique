@@ -412,18 +412,21 @@ print(tab)
 # ```python
 # tab = np.array([[1, 2, 3], [4, 5, 6]])
 # view = tab[tab%2==0]
-# view = 100
+# view[...] = 100
 # print(tab) 
 # -> ([[1, 2, 3], # et non [1, 100, 3],...
 #      [4, 5, 6]])
+# print(view)
+# -> [100 100 100]
 # ```    
 
 # %% {"tags": ["level_intermediate"]}
 # le code
 tab = np.array([[1, 2, 3], [4, 5, 6]])
 view = tab[tab%2==0]
-view = 100
+view[...] = 100
 print(tab)
+print(view)
 
 # %% [markdown] {"tags": ["framed_cell", "level_intermediate"]}
 # ### c'est fragile (2)
