@@ -15,4 +15,3 @@ nbautoeval
 nb-courselevels
 
 rise
-jupyter-contrib-nbextensions
