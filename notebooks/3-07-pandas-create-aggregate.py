@@ -248,7 +248,7 @@ df['Names'] = df.index
 df.values
 
 # %% [markdown]
-# ### exercice : création de df et type des éléments
+# ### **exercice** : création de df et type des éléments
 
 # %% [markdown]
 # 1. créer un `numpy.ndarray` à partir de la liste suivante
@@ -295,11 +295,6 @@ df.values
 #
 # 1. modifiez les colonnes `'speed'` et `'lifespan'` de manière à leur donner le type `float`  
 # (utilisez `pandas.Series.astype` voir les **rappels** en fin de cellule)
-# <br>
-#
-# 1. avec l'attribut `dtype` de la méthode `pandas.DataFrame.to_numpy`  
-# affichez le type du tableau `numpy` sous-jacent de votre data-frame  
-# que constatez-vous ? (voir l'**explication** en fin de cellule)
 # <br>
 #
 # **rappel**
@@ -446,7 +441,7 @@ df1.merge(df2, left_index=True, right_on='name')
 # * seule `concat()` supporte un paramètre `axis=` 
 
 # %% [markdown]
-# ### exercice - collage de datatables
+# ### **exercice** - collage de datatables
 #
 # voici 3 jeux de données qu'on vous demande d'assembler  
 # pour décrire à la fin 4 caractéristiques à propos de 5 élèves
@@ -467,7 +462,7 @@ df3
 # votre code
 
 # %% [markdown] tags=["level_intermediate"]
-# ### exercice - intermédiaire
+# ### **exercice** - intermédiaire
 #
 # l'énoncé est le même, sauf que cette fois on a choisi
 # d'indexer toutes les tables par la colonne `name`

@@ -218,12 +218,22 @@ for group, subdf in by_sex:
 # by_sex['Age'].max()
 # ```
 #
+# ou encore on peut fabriquer une dataframe qui contient les sommes
+# des colonnes de départ, mais par sexe
+#
+# ```python
+# # les sommes des colonnes, mais par sexe 
+# by_sex.sum()
+# ```
 
 # %%
 # souvent on traite un groupby comme une dataframe
 # ce qui a l'effet d'appliquer l'opération (ici ['Age'])
 # à toutes les sous-dataframe
 by_sex.Age.max()
+
+# %%
+by_sex.sum()
 
 # %% [markdown] {"tags": ["framed_cell"]}
 # ### accéder à un groupe
@@ -279,7 +289,7 @@ by_sex.get_group('female')
 # ```
 # <br>
 #
-# utilisons `size()` pour voir les clés du groupement
+# utilisons `size()` pour voir les clés du groupement  
 # ici tous les cas du produit cartésien sont représentés
 #
 # ```python
@@ -297,7 +307,7 @@ by_sex.get_group('female')
 #
 # <br>
 #
-# nous découvrons là une `pandas.Series` avec un `index` composé  
+# nous découvrons là une `pandas.Series` avec un **`index` composé**  
 # qu'en pandas on appelle **un *MultiIndex***
 
 # %% {"scrolled": true}
@@ -337,16 +347,16 @@ by_class_sex.size()
 # <br>
 #
 # les index sont les tuples du produit cartésien  
-# ils peuvent se calculer par une compréhension python comme
+# on aurait pu aussi les calculer par une compréhension Python comme ceci
 # ```python
-# [(i, j) for i in df['Pclass'].unique() for j in df['Sex'].unique()]
+# {(i, j) for i in df['Pclass'].unique() for j in df['Sex'].unique()}
 # ->
-# [(3, 'male'),
+# {(3, 'male'),
 #  (3, 'female'),
 #  (1, 'male'),
 #  (1, 'female'),
 #  (2, 'male'),
-#  (2, 'female')]
+#  (2, 'female')}
 # ```
 
 # %%
@@ -359,7 +369,12 @@ df.groupby(['Pclass', 'Sex']).size().index
 
 # %%
 # le code
-[(i, j) for i in df['Pclass'].unique() for j in df['Sex'].unique()]
+computed_index = {(i, j) for i in df['Pclass'].unique() for j in df['Sex'].unique()}
+computed_index
+
+# %%
+# pour vérifier
+computed_index == set(df.groupby(['Pclass', 'Sex']).size().index)
 
 # %% [markdown] {"tags": ["framed_cell"]}
 # ### les éléments de l'index sont des tuples
@@ -424,6 +439,11 @@ for (class_, sex), subdf in by_class_sex:
 #     IPython.display.display(subdf.head(1))
 # ```
 
+# %%
+# le code : c'est moche
+#for group, subdf in by_class_sex:
+#    print(group, subdf.head(1))
+
 # %% {"tags": ["level_intermediate"]}
 # le code
 import IPython
@@ -465,6 +485,16 @@ for group, subdf in by_class_sex:
 
 # %% [markdown]
 # 5. créez un `dict` avec les taux de survie par genre dans chaque classe
+#
+#    vous devez obtenir quelque chose de ce genre
+# ```
+# {('female', 1): 0.96,
+#  ('female', 2): 0.92,
+#  ('female', 3): 0.5,
+#  ('male', 1): 0.36,
+#  ('male', 2): 0.15,
+#  ('male', 3): 0.13}
+# ```
 
 # %%
 # votre code
@@ -578,7 +608,8 @@ for group, subdf in by_class_sex:
 #
 # <br>
 #
-# on sait déjà comment ranger la colonne dans votre dataframe
+# souvent on va ranger cette information dans une nouvelle colonne  
+# et ça on sait déjà comment le faire
 # ```python
 # df['Age-class'] = pd.cut(
 #     df['Age'],
@@ -603,6 +634,7 @@ pd.cut(df['Age'], bins=[0, 12, 19, 55, 100])
 
 # %%
 # le code
+# pareil mais avec des labels ad-hoc
 age_class_series = pd.cut(df['Age'], bins=[0, 12, 19, 55, 100],
        labels=['children', ' young', 'adult', '55+'])
 age_class_series
@@ -748,7 +780,8 @@ df.pivot_table(
 # <br>
 #
 # **exercice**  
-# observez les résultats obtenus dans ces cas avec *e.g.*  
+# observez les résultats obtenus par exemple  
+# en ajoutant dans chacune des dimensions
 # * comme valeur supplémentaire `Age`
 # * comme critère supplémentaire `Sex`  
 # et notamment que pouvez-vous dire des index (en lignes et en colonnes)  
@@ -761,20 +794,53 @@ df = pd.read_csv('titanic.csv')
 # %%
 # votre code
 # plusieurs values
+df2 = ...
+
+# %% {"cell_style": "center"}
+df2.columns
+
+# %%
+df2.index
 
 # %%
 # votre code
 # plusieurs columns
-
-# %%
-# votre code
-# plusieurs index
+df3 = ...
 
 # %%
 df3.columns
 
 # %%
+df3.index
+
+# %%
+# votre code
+# plusieurs index
+df4 = ...
+
+# %%
+df4.columns
+
+# %%
 df4.index
+
+# %% [markdown]
+# ### **exercice** sur `pivot_table()`
+
+# %%
+df = pd.read_csv('wine.csv')
+df.head()
+
+# %% [markdown]
+# 1. affichez les valeurs min, max, et moyenne, de la colonne 'magnesium'
+
+# %% [markdown]
+# 2. définissez deux catégories selon que le magnesium est en dessous ou au-dessus de la moyenne (qu'on appelle 'mag-low' et 'mag-high'); rangez le résultat dans une colonne 'mag-cat'
+
+# %% [markdown]
+# 3. calculez cette table
+#
+# ![](media/pivot-table-expected.png)
 
 # %% [markdown] {"tags": ["framed_cell", "level_intermediate"]}
 # ## accès au dictionnaire des groupes

@@ -11,7 +11,7 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3 (ipykernel)
+#     display_name: Python 3
 #     language: python
 #     name: python3
 #   language_info:
@@ -65,13 +65,13 @@ HTML('<link rel="stylesheet" href="slides-notebook.css" />')
 # 1. essayez de mettre les noms en majuscules  
 #    grâce aux indices suivants:
 #
-# * il s'agit donc pour nous d'apppliquer la méthode `upper`
-#   à toutes les chaînes de caractères (`str`) de  la colonne `df['Name']`
-# * les `pandas.Series` formées de chaînes de caractères sont, par défaut, du type `pandas` `object`
-# * ces colonnes ont un accesseur `str` (par exemple ici `df['Names'].str`)
-# * cet attribut permet d'accéder aux méthodes classiques des `str` (comme par exemple `upper()`)
-# * ces fonctions sont naturellement vectorisées  
-#   i.e. elles s'appliquent à toute la série (sans for-python)  
+#  * il s'agit donc pour nous d'apppliquer la méthode `upper`
+#    à toutes les chaînes de caractères (`str`) de  la colonne `df['Name']`
+#  * les `pandas.Series` formées de chaînes de caractères sont, par défaut, du type `pandas` `object`
+#  * ces colonnes ont un accesseur `str` (par exemple ici `df['Names'].str`)
+#  * cet attribut permet d'accéder aux méthodes classiques des `str` (comme par exemple `upper()`)
+#  * ces fonctions sont naturellement vectorisées  
+#    i.e. elles s'appliquent à toute la série (sans for-python)  
 #   
 # 1. observer la valeur de la colonne `Name` dans la dataframe originale  
 #    a-t-elle été modifiée ?  
