@@ -18,6 +18,8 @@
 #     name: python
 #     nbconvert_exporter: python
 #     pygments_lexer: ipython3
+#   nbhosting:
+#     title: "TP - les v\xE9los sur le pont"
 # ---
 
 # %% [markdown]
